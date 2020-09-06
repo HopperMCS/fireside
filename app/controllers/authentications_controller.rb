@@ -17,6 +17,7 @@ class AuthenticationsController < ApplicationController
     if User.find_by(:username => username, :email => email) == nil
       @user.save
       session[:user_id] = @user.id
+      binding.pry
       redirect "/books/index.html"
     else
       redirect "/login"
@@ -38,4 +39,8 @@ class AuthenticationsController < ApplicationController
     end
   end
 
+  get "/logout" do
+    session.clear
+    redirect "/"
+  end
 end

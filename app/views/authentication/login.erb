@@ -1,6 +1,17 @@
-<h1>Log in</h1>
-<form method="POST" action="/login">
-  <p>Username: <input type="text" name="username"/></p>
-  <p>Password: <input type="password" name="password"/></p>
-  <input type="submit" value="Submit"/>
-</form>
+<br>
+<h2>Log In</h2>
+<div class="card">
+  <div class="card-body">
+    <form method="POST" action="/login">
+      <div class="form-group">
+        <label>Username:</label>
+        <input name="username" type="text" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Password:</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

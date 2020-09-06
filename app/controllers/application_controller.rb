@@ -1,6 +1,8 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+  @@site_title = "Fireside" 
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
