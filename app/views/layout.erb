@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   
   </body>
@@ -15,8 +16,15 @@
         <span class="navbar-brand mb-0 h1"><%= @@site_title %></span>        
         <form class="form-inline my-2 my-lg-0">
           <% if is_logged_in? %>
-            Welcome, <%= current_user.username %>!&nbsp;&nbsp;
-            <a class="btn btn-outline-danger" href="/logout">Log out</a>
+            <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Welcome, <%= current_user.username %>!
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/books/index.html">All Books</a>
+              <a class="dropdown-item" href="/book_reports/index.html">Your Book Reports</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Log Out</a>
+            </div>
           <% else %>
             <a class="nav-link dropdown-toggle my-2 my-lg-0" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Sign up or log in
@@ -26,19 +34,21 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/login">Log In</a>
             </div>
-
           <% end %>
         </form>
       </nav>
       
       <%= yield %>
-
+      <div id="footer">
+        &nbsp;<img src="/images/flatiron.png" width="24" height="22">
+        Learn. Love. Code.
+      </div>
+    </div>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    </div>
   </body>
 </html>
 
