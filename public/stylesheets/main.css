@@ -1,5 +1,14 @@
 #footer {
   margin: 15px 0px 15px 0px;
   padding: 10px 0px 10px 0px;
-  background-color: #f8f9fa;       
+  background-color: #00B3E6;  
+  color: white;     
+}
+
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: white;
 }

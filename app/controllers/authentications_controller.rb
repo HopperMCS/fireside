@@ -18,7 +18,7 @@ class AuthenticationsController < ApplicationController
       @user.save
       session[:user_id] = @user.id
       binding.pry
-      redirect "/books/index.html"
+      redirect "/books"
     else
       redirect "/login"
     end
@@ -33,7 +33,7 @@ class AuthenticationsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/books/index.html"
+      redirect "/books"
     else
       redirect "/login"
     end
