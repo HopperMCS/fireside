@@ -1,6 +1,7 @@
 require 'pry'
 class AuthenticationsController < ApplicationController
   get '/signup' do
+    already_authenticated
     erb :'./authentication/signup'
   end
 
@@ -14,10 +15,13 @@ class AuthenticationsController < ApplicationController
 
     # When testing in Pry, I noticed that when find_by comes up empty-handed, it spits nil
     # We can use this to our advantage to determine whether or not duplicates exist
-    if User.find_by(:username => username, :email => email) == nil
+    if params[:username].empty?
+      redirect to '/signup'
+    elsif params[:email].empty?
+      redirect to '/signup'
+    elsif User.find_by(:username => username) == nil
       @user.save
       session[:user_id] = @user.id
-      binding.pry
       redirect "/books"
     else
       redirect "/login"
@@ -25,6 +29,7 @@ class AuthenticationsController < ApplicationController
   end
 
   get '/login' do
+    already_authenticated
     erb :'/authentication/login'
   end
 
@@ -42,5 +47,9 @@ class AuthenticationsController < ApplicationController
   get "/logout" do
     session.clear
     redirect "/"
+  end
+
+  get "/access_denied" do
+    erb :"/authentication/denied"
   end
 end

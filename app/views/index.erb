@@ -3,8 +3,13 @@
   <h1 class="display-4">Welcome to Fireside!</h1>
   <p class="lead">This is a simple application to catalogue metadata about books, and allow users to submit reports/reviews of the books submitted to our database.</p>
   <hr class="my-4">
-  <p>To get started, sign up or log in below:</p>
-  <a class="btn btn-primary btn-md" href="/signup" role="button">Sign Up!</a> or existing users <a href="/login"> log in</a>
+  <% if is_logged_in? == true %>
+    <p>Welcome back, <%= current_user.username %>!</p>
+    <a class="btn btn-primary btn-md" href="/book_reports" role="button">Go to your reports</a>
+  <% else %>
+    <p>To get started, sign up or log in below:</p>
+    <a class="btn btn-primary btn-md" href="/signup" role="button">Sign Up!</a> or existing users <a href="/login"> log in</a>
+  <% end %>
 </div>
 
 <p>This is a portfolio project for Module 2 of Flatiron School written by Gage Morgan.</p>

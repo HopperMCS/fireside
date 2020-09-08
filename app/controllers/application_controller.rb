@@ -13,7 +13,19 @@ class ApplicationController < Sinatra::Base
   helpers do
 		def is_logged_in?
 			!!session[:user_id]
-		end
+    end
+    
+    def no_permit
+      if is_logged_in? == false
+        redirect to "/access_denied"
+      end
+    end
+
+    def already_authenticated
+      if is_logged_in? == true
+        redirect to "/"
+      end
+    end
 
 		def current_user
 			User.find(session[:user_id])
