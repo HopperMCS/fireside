@@ -1,1 +1,24 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<h1><%= @book.title %></h1>
+<div class="card">
+  <div class="card-body">
+    Author: <%= @book.author %><br>
+    Release Year: <%= @book.release_year %><br>
+    Purchase Link: <%= @book.purchase_link %><br>
+  </div>
+</div>
+<br>
+<a href="/books/<%= @book.id %>/book_reports/new" class="btn btn-primary">Add Book Report</a><br>
+<br>
+<h2>Book Reports</h2>
+<% @book.book_reports.each do |book_report| %>
+  <div class="card">
+    <div class="card-body">
+      <b>Title:</b> <%= book_report.title %><br>
+      <b>Author:</b> <%= current_user.username %><br>
+      <br><b>Synopsis:</b><br>
+      <%= book_report.synopsis %><br><br>
+      <b>Review:</b><br>
+      <%= book_report.review %><br>
+    </div>
+  </div>
+<% end %>

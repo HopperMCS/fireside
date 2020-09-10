@@ -15,12 +15,14 @@ class BooksController < ApplicationController
   # POST: /books
   post "/books" do
     no_permit
+    @book = Book.create(:title => params[:title], :author => params[:author], :release_year => params[:release_year], :purchase_link => params[:purchase_link])
     redirect "/books"
   end
 
   # GET: /books/5
   get "/books/:id" do
     no_permit
+    set_book
     erb :"/books/show.html"
   end
 
