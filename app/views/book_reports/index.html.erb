@@ -1,8 +1,8 @@
 <h1>Book Reports</h1>
 <div class="card">
   <div class="card-body">
-    <% BookReport.all.each do |book_report| %>
-      <a href="/books/<%= book_report.book_id %>"><%= book_report.title %> by <%= User.find_by_id(book_report.user_id).username %><br><br>
+    <% current_user.book_reports.each do |book_report| %>
+      <a href="/books/<%= book_report.book_id %>"><%= book_report.title %> </a><br><br>
     <% end %>
   </div>
 </div>
