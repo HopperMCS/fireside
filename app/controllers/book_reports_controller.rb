@@ -2,22 +2,26 @@ class BookReportsController < ApplicationController
 
   # GET: /book_reports
   get "/book_reports" do
+    no_permit
     erb :"/book_reports/index.html"
   end
 
   # GET: /book_reports/new
   get "/books/:book_id/book_reports/new" do
+    no_permit
     erb :"/book_reports/new.html"
   end
 
   # POST: /book_reports
   post "/book_reports" do
+    no_permit
     @book_report = current_user.book_reports.create(:title => params[:title], :synopsis => params[:synopsis], :review => params[:review], :book_id => params[:book_id])
     redirect "/book_reports"
   end
 
   # GET: /book_reports/5/edit
   get "/book_reports/:id/edit" do
+    no_permit
     set_book_report
     redirect_if_not_authorized
     erb :"/book_reports/edit.html"
@@ -25,6 +29,7 @@ class BookReportsController < ApplicationController
 
   # PATCH: /book_reports/5
   patch "/book_reports/:id" do
+    no_permit
     set_book_report
     redirect_if_not_authorized
     redirect "/book_reports/:id"
