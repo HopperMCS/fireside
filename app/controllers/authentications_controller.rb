@@ -8,7 +8,7 @@ class AuthenticationsController < ApplicationController
   post "/signup" do
     # Create a new ActiveRecord object using params submitted by Sinatra
     @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-    
+
     # Store username and email in vars so they can be run against the db
     username = @user.username
     email = @user.email
@@ -30,14 +30,15 @@ class AuthenticationsController < ApplicationController
 
   get '/login' do
     already_authenticated
+
     erb :'/authentication/login'
   end
 
   post "/login" do
-    user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
 
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
+    if @user && @user.authenticate(params[:password])
+      session[:user_id] = @user.id
       redirect "/books"
     else
       redirect "/login"
