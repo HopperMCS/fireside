@@ -2,7 +2,7 @@
 <h2>Edit Book Report</h2>
 <div class="card">
   <div class="card-body">
-    <form action="/books/<%= @book_report.book_id %>" method="POST">
+    <form action="/book_reports/<%= @book_report.id %>" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <div class="form-group">
         <label>Title:</label>
