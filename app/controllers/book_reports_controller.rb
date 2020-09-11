@@ -29,7 +29,7 @@ class BookReportsController < ApplicationController
   end
 
   # PATCH: /book_reports/5
-  patch "/book_reports" do
+  patch "/book_reports/:id" do
     no_permit
     set_book_report
     redirect_if_not_authorized
