@@ -26,6 +26,10 @@ class BooksController < ApplicationController
   end
 
   helpers do
+    def authorize_book_report(report)
+      current_user == report.user
+    end
+
     def set_book
       @book = Book.find_by_id(params[:id])
       if @book.nil?
