@@ -1,5 +1,4 @@
 class BooksController < ApplicationController
-
   # GET: /books
   get "/books" do
     no_permit
@@ -26,21 +25,13 @@ class BooksController < ApplicationController
     erb :"/books/show.html"
   end
 
-  # GET: /books/5/edit
-  get "/books/:id/edit" do
-    no_permit
-    erb :"/books/edit.html"
-  end
-
-  # PATCH: /books/5
-  patch "/books/:id" do
-    no_permit
-    redirect "/books/:id"
-  end
-
-  # DELETE: /books/5/delete
-  delete "/books/:id/delete" do
-    no_permit
-    redirect "/books"
+  helpers do
+    def set_book
+      @book = Book.find_by_id(params[:id])
+      if @book.nil?
+        flash[:error] = "Couldn't find a book with id: #{params[:id]}"
+        redirect "/books"
+      end
+    end
   end
 end
