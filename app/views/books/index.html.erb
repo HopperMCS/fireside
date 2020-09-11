@@ -3,6 +3,8 @@
 <br><br>
 <div class="card">
   <div class="card-body">
-    Books list goes here to pull links to books from the database
+    <% Book.all.each do |book| %>
+      <a href="/books/<%= book.id %>"><%= book.title %> </a><br><br>
+    <% end %>
   </div>
 </div>
