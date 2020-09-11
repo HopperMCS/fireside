@@ -21,9 +21,10 @@
       <%= book_report.review %><br>
       <br>
       <% if authorize_book_report(book_report) %>
+        <a href="/book_reports/<%= book_report.id %>/edit"><input type="submit" value="Edit" class="btn btn-primary"></a><br><br>
         <form action="/book_reports/<%= book_report.id %>" method="post">
           <input id="hidden" type="hidden" name="_method" value="delete">
-          <input type="submit" value="delete" class="btn btn-danger">
+          <input type="submit" value="Delete" class="btn btn-danger">
         </form>
       <% end %>  
     </div>
