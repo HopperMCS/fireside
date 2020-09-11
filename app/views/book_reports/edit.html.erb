@@ -2,20 +2,21 @@
 <h2>Edit Book Report</h2>
 <div class="card">
   <div class="card-body">
-    <form action="/book_reports" method="POST">
+    <form action="/books/<%= @book_report.book_id %>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="patch">
       <div class="form-group">
         <label>Title:</label>
-        <input name="title" type="text" class="form-control">
+        <input name="title" type="text" class="form-control" value="<%= @book_report.title %>">
         <small class="form-text text-muted">Add a title</small>
       </div>
       <div class="form-group">
         <label>Synopsis:</label>
-        <textarea name="synopsis" rows="10" type="text" class="form-control"></textarea>
+        <textarea name="synopsis" rows="10" type="text" class="form-control"><%= @book_report.synopsis %></textarea>
         <small class="form-text text-muted">Give a summary of your book</small>
       </div>
       <div class="form-group">
         <label>Review:</label>
-        <textarea name="review" rows="5" type="text" class="form-control"></textarea>
+        <textarea name="review" rows="5" type="text" class="form-control"><%= @book_report.review %></textarea>
         <small class="form-text text-muted">Review - give a numbered rating and a brief opinion of the book</small>
       </div>
       <input type="hidden" name="book_id" value="<%= params[:book_id] %>">

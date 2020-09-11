@@ -24,21 +24,32 @@ class BookReportsController < ApplicationController
     no_permit
     set_book_report
     redirect_if_not_authorized
+
+    @book_report = BookReport.find_by_id(params[:id])
     erb :"/book_reports/edit.html"
   end
 
   # PATCH: /book_reports/5
-  patch "/book_reports/:id" do
+  patch "/book_reports" do
     no_permit
     set_book_report
     redirect_if_not_authorized
-    redirect "/book_reports/:id"
+
+    @book_report = BookReport.find_by_id(params[:id])
+    @book_report.title = params[:title]
+    @book_report.synopsis = params[:synopsis]
+    @book_report.review = params[:review]
+    @book_report.save
+    redirect "/books/#{@book_report.book_id}"
   end
 
   # DELETE: /book_reports/5/delete
-  delete "/book_reports/:id/delete" do
+  delete "/book_reports/:id" do
     set_book_report
     redirect_if_not_authorized
-    redirect "/book_reports"
+
+    @book_report = BookReport.find_by_id(params[:id])
+    @book_report.destroy
+    redirect "/books"
   end
 end

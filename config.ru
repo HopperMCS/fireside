@@ -7,6 +7,8 @@ require './config/environment'
 require './app/controllers/authentications_controller'
 require './app/controllers/application_controller'
 
+use Rack::MethodOverride
+
 run ApplicationController
 use BookReportsController
 use AuthenticationsController
