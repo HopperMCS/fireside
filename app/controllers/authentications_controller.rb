@@ -20,7 +20,6 @@ class AuthenticationsController < ApplicationController
 
   get '/login' do
     already_authenticated
-
     erb :'/authentication/login'
   end
 
