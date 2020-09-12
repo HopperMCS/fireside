@@ -1,6 +1,7 @@
 require 'pry'
 class AuthenticationsController < ApplicationController
   get '/signup' do
+    @user = User.new
     already_authenticated
     erb :'./authentication/signup'
   end
@@ -9,22 +10,11 @@ class AuthenticationsController < ApplicationController
     # Create a new ActiveRecord object using params submitted by Sinatra
     @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
 
-    # Store username and email in vars so they can be run against the db
-    username = @user.username
-    email = @user.email
-
-    # When testing in Pry, I noticed that when find_by comes up empty-handed, it spits nil
-    # We can use this to our advantage to determine whether or not duplicates exist
-    if params[:username].empty?
-      redirect to '/signup'
-    elsif params[:email].empty?
-      redirect to '/signup'
-    elsif User.find_by(:username => username) == nil
-      @user.save
+    if @user.save
       session[:user_id] = @user.id
       redirect "/books"
     else
-      redirect "/login"
+      erb :"/authentication/signup"
     end
   end
 
