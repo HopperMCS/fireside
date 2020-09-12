@@ -1,5 +1,18 @@
 <br>
 <h2>Sign Up</h2>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= @user.errors.count %> error(s) prohibited this post from being saved:</h2>
+ 
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="card">
   <div class="card-body">
     <form action="/signup" method="POST">
