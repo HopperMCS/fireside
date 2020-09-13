@@ -68,7 +68,7 @@ class BookReportsController < ApplicationController
     def set_book_report
       @book_report = BookReport.find_by_id(params[:id])
       if @book_report.nil?
-        flash[:error] = "Couldn't find a book with id: #{params[:id]}"
+        flash[:error] = "Couldn't find a book report with id: #{params[:id]}"
         redirect "/books"
       end
     end
