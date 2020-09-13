@@ -37,8 +37,15 @@
           <% end %>
         </form>
       </nav>
-      <%= styled_flash %>
+
+      <% if flash[:error] %><br>
+        <div class="alert alert-warning">
+          <%= styled_flash %>
+        </div>
+      <% end %>
+
       <%= yield %>
+
       <div id="footer">
         &nbsp;<img src="/images/flatiron.png" width="24" height="22">
         Learn. Love. Code.
